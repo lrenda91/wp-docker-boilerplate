@@ -16,3 +16,12 @@ Place on root directory a .env file like
     WORDPRESS_TABLE_PREFIX=wp_
     WP_PORT=8092
     
+####Deploy
+Run docker-compose
+
+    docker-compose up -d
+    
+(FIRST TIME) - Run init.php to create the database into the WP container
+
+    docker exec -it wp bash
+    php /tmp/init.php
