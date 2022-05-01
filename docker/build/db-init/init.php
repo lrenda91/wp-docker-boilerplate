@@ -3,9 +3,9 @@ $servername = getenv("WORDPRESS_DB_HOST");
 $username = getenv("WORDPRESS_DB_USER");
 $password = getenv("WORDPRESS_DB_PASSWORD");
 $db_name = getenv("WORDPRESS_DB_NAME");
-// Create connection
+
+// Create and check connection
 $conn = new mysqli($servername, $username, $password);
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
