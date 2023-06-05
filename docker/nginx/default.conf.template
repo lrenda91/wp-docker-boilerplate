@@ -1,0 +1,17 @@
+server {
+    listen              443 ssl;
+    server_name  www.my-site.com my-site.com;
+    ssl_certificate     /etc/nginx/certs/my-site.com.pem;
+    ssl_certificate_key /etc/nginx/certs/my-site.com-key.pem;
+    #access_log  /var/log/nginx/log/unsecure.access.log  main;
+    location / {
+        proxy_read_timeout    90;
+        proxy_connect_timeout 90;
+        proxy_redirect        off;
+        proxy_pass http://${SITE_NAME};
+        proxy_set_header      X-Real-IP $remote_addr;
+        proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header      X-Forwarded-Proto https;
+        proxy_set_header      Host $host;
+    }
+}
